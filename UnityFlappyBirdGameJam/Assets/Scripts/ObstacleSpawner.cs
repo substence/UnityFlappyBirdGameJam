@@ -44,7 +44,22 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (obstacleLayer)
         {
-            GameObject spawnedObstacle = Instantiate(obstacleGO, obstacleLayer.transform);
+            float gap = UnityEngine.Random.Range(3, 7);
+            float offsetY = UnityEngine.Random.Range(-3, 3);
+            spawnDelay = UnityEngine.Random.Range(2, 3);
+
+            //spawn top column
+            Vector3 parentPosition = obstacleLayer.transform.position;
+            parentPosition.y += offsetY;
+            Vector3 topPosition = new Vector3(parentPosition.x, parentPosition.y + 5 , parentPosition.z);
+            topPosition.y += gap * 0.5f;
+            GameObject spawnedObstacle = Instantiate(obstacleGO, topPosition, new Quaternion());
+            spawnedObstacle.GetComponent<SpriteRenderer>().flipY = true;
+            _spawnedObstacles.Add(spawnedObstacle);
+
+            Vector3 bottomPosition = new Vector3(parentPosition.x, parentPosition.y - 5, parentPosition.z);
+            bottomPosition.y -= gap * 0.5f;
+            spawnedObstacle = Instantiate(obstacleGO, bottomPosition, new Quaternion());
             if (spawnedObstacle)
             {
                 _spawnedObstacles.Add(spawnedObstacle);

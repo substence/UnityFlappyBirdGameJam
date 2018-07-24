@@ -24,5 +24,6 @@ public class Jump : MonoBehaviour
     {
         Vector2 force = direction * magnitude;
         GetComponent<Rigidbody2D>().AddForce(force);
+        this.gameObject.GetComponent<Animator>().SetTrigger("Flap");
     }
 }

@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Button startButton;
-    private float score = 0.0f;
 
 	// Use this for initialization
 	void Start ()
@@ -31,8 +30,10 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
+        string sceneName = SceneManager.GetActiveScene().name;
+        //SceneManager.UnloadSceneAsync(sceneName);
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(sceneName);
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -50,7 +51,6 @@ public class GameManager : MonoBehaviour
             dispatcher.destroyed.AddListener(OnPlayerDestroyed);
         }
         Time.timeScale = 0;
-        score = 0;
     }
 
     private void ClickedStartButton()
