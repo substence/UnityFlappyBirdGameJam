@@ -56,12 +56,13 @@ public class GameManager : MonoBehaviour
     private void ClickedStartButton()
     {
         startButton.onClick.RemoveListener(ClickedStartButton);
+        Destroy(startButton.gameObject);
         StartNewGame();
     }
 
     private void StartNewGame()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 1;
     }
 
     private void OnDestroy()
