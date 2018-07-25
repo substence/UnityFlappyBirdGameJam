@@ -15,11 +15,11 @@ public class GameManager : MonoBehaviour
         SetupGame();
     }
     
-    private DispatcherDestroyed GetDispatcher()
+    private Vitality GetDispatcher()
     {
         if (player)
         {
-            return player.GetComponent<DispatcherDestroyed>();
+            return player.GetComponent<Vitality>();
         }
         return null;
     }
@@ -36,6 +36,14 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
+        //Time.timeScale = 0;
+        Settings.moveSpeed = 0.0f;
+        startButton.gameObject.SetActive(true);
+        startButton.onClick.AddListener(ClickedReStartButton);
+    }
+
+    private void ClickedReStartButton()
+    {
         string sceneName = SceneManager.GetActiveScene().name;
         //SceneManager.UnloadSceneAsync(sceneName);
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -51,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         startButton.onClick.AddListener(ClickedStartButton);
-        DispatcherDestroyed dispatcher = GetDispatcher();
+        Vitality dispatcher = GetDispatcher();
         if (dispatcher)
         {
             dispatcher.destroyed.AddListener(OnPlayerDestroyed);
@@ -62,7 +70,7 @@ public class GameManager : MonoBehaviour
     private void ClickedStartButton()
     {
         startButton.onClick.RemoveListener(ClickedStartButton);
-        Destroy(startButton.gameObject);
+        startButton.gameObject.SetActive(false);
         StartNewGame();
     }
 
@@ -73,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        DispatcherDestroyed dispatcher = GetDispatcher();
+        Vitality dispatcher = GetDispatcher();
         if (dispatcher)
         {
             dispatcher.destroyed.RemoveListener(OnPlayerDestroyed);

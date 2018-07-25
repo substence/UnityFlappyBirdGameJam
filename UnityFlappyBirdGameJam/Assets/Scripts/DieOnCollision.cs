@@ -8,9 +8,19 @@ public class DieOnCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(requiredTag))
+        Collided(collision.gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collided(collision.gameObject);
+    }
+
+    void Collided(GameObject collidee)
+    {
+        if (collidee.gameObject.CompareTag(requiredTag))
         {
-            Destroy(this.gameObject);
+            this.GetComponent<Vitality>().Kill();
         }
     }
 }

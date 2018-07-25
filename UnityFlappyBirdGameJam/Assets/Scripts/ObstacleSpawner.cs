@@ -9,7 +9,7 @@ public class ObstacleSpawner : MonoBehaviour
 {
     // public
     [SerializeField] private float spawnDelay = 1.0f;
-    [SerializeField] private float moveSpeed = -.1f;
+    //[SerializeField] private float moveSpeed = -.1f;
     [SerializeField] public GameObject obstacleGO;
     [SerializeField] private GameObject obstacleLayer;
 
@@ -36,7 +36,7 @@ public class ObstacleSpawner : MonoBehaviour
                 _spawnedObstacles.RemoveAt(i);
                 continue;
             }
-            obstacle.transform.position += new Vector3(moveSpeed, 0, 0);
+            obstacle.transform.position += new Vector3(Settings.moveSpeed, 0, 0);
         }
     }
 
