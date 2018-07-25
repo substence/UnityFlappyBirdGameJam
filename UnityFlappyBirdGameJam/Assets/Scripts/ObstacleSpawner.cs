@@ -46,7 +46,7 @@ public class ObstacleSpawner : MonoBehaviour
         {
             float gap = UnityEngine.Random.Range(3, 7);
             float offsetY = UnityEngine.Random.Range(-3, 3);
-            spawnDelay = UnityEngine.Random.Range(2, 3);
+            spawnDelay = UnityEngine.Random.Range(2, 3); 
 
             //spawn top column
             Vector3 parentPosition = obstacleLayer.transform.position;

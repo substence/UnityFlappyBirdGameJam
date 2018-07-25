@@ -7,9 +7,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Button startButton;
+    [SerializeField] private AudioClip deathAuidoClip;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         SetupGame();
     }
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerDestroyed()
     {
+        AudioSource audio = GetComponent<AudioSource>();
+        if (audio && deathAuidoClip)
+        {
+            audio.PlayOneShot(deathAuidoClip);
+        }
         EndGame();
     }
 

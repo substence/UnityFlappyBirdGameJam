@@ -34,6 +34,12 @@ public class ScoreTracker : MonoBehaviour
         score++;
         scoreText.text = "Score: " + score.ToString();
         persistantData.UpdateScore(score);
+
+        AudioSource audio = GetComponent<AudioSource>();
+        if (audio)
+        {
+            audio.Play();
+        }
     }
 
     void CleanupDeadObstacles()
