@@ -1,8 +1,5 @@
 ﻿using Unity.Entities;
 using UnityEngine;
-using Unity.Mathematics;
-using Unity.Transforms;
-using System.ComponentModel;
 
 namespace Pure
 {
